@@ -16,8 +16,9 @@ bool valid_input(char *string, unsigned len)
   int inpLen; //input length
 
   while (!valid) { //check valid input loop
-    printf("UserApp: please input a string to send to the driver (100 char max):
-      \n");
+    printf(
+      "UserApp: please input a string to send to the driver (100 char max):\n"
+    );
     usrInp = fgets(input, len+2, stdin); //user input
     inpLen = strlen(input); //length
 
@@ -76,6 +77,6 @@ int main()
   }
 
   //print & end
-  printf("UserApp: 's' recieved from device\n", recieve);
+  printf("UserApp: '%s' recieved from device\n", recieve);
   return 0;
 }
