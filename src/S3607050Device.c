@@ -1,7 +1,7 @@
 /*
   COSC1114 Assignment 2
   Author: Rei Ito (s3607050)
-  NOTE: Heavily influenced by work done by: SolidusCode & Derek Molloy
+  NOTE: Heavily influenced by work done by SolidusCode & Derek Molloy
 */
 
 #include "S3607050Device.h"
@@ -35,16 +35,16 @@ static int __init my_init(void)
   my_cdev = cdev_alloc();
   my_cdev->ops = &fops;
   my_cdev->owner = THIS_MODULE;
-  
+
   ret = cdev_add(my_cdev, dev_num, 1); //add character device
   if (ret < 0) { //check valid character device
     printk(KERN_ALERT "S3607050Device: failed to add cdev to kernel\n");
     return ret;
   }
   printk(KERN_INFO "S3607050Device: cdev correctly added to kernel\n");
-  
+
   sema_init(&my_device.sem, 1);
-  
+
   // finish message
   printk(KERN_INFO "S3607050Device: module successfully loaded\n");
   return 0;
@@ -65,7 +65,7 @@ static int my_open(struct inode *inodep, struct file *filep)
     printk(KERN_ALERT "S3607050Device: failed to lock device on open\n");
     return -1;
   }
-  
+
   printk(KERN_INFO "S3607050Device: has successfully opened\n");
   return 0;
 }
@@ -78,7 +78,7 @@ static ssize_t my_read(struct file *filep, char *buffer, size_t len,
 
   // send from character device to user
   ret = copy_to_user(buffer, my_device.data, len);
-  
+
   if (ret < 0) { //check valid send
     printk(KERN_INFO "S3607050Device: failed to send '%s'(%d) to user\n",
       my_device.data, ret);

@@ -1,7 +1,7 @@
 /*
   COSC1114 Assignment 2
   Author: Rei Ito (s3607050)
-  NOTE: Heavily influenced by work done by: SolidusCode & Derek Molloy
+  NOTE: Heavily influenced by work done by SolidusCode & Derek Molloy
 */
 
 #include <linux/module.h>
